@@ -1,0 +1,16 @@
+django
+django-cors-headers
+django-apscheduler
+djangorestframework
+pymongo
+bs4
+furl
+requests
+jinja2
+python-scrapyd-api
+scrapyd
+nltk
+transformers
+torch
+pytorch-crf
+neo4j
