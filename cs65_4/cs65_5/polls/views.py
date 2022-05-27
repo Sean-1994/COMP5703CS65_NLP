@@ -1120,3 +1120,15 @@ def neo4j_find(request):
         output = app.find_node(disease_name)
 
         return JsonResponse(output)
+    
+ 
+@log_exception()
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def neo4j_graph(request):
+    """
+    render index page
+    :param request: request object
+    :return: page
+    """
+    return render(request, 'neo4j_graph.html')
