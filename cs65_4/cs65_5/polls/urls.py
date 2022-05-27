@@ -51,5 +51,6 @@ urlpatterns = [
     re_path(r'^api/neo4j/modify', views.neo4j_modify, name='neo4j_modify'),
     re_path(r'^api/neo4j/delete', views.neo4j_delete, name='neo4j_delete'),
     re_path(r'^api/neo4j/find', views.neo4j_find, name='neo4j_find'),
+    re_path('neo4j_graph.html', views.neo4j_graph, name='neo4j_graph'),
     re_path(r'^api/render', views.render_html, name='render_html'),
 ]
