@@ -32,8 +32,8 @@ from .__init__ import get_logger
 from cs65_4_1.settings import TIME_ZONE
 from .build import build_project, find_egg
 from .utils import log_exception, scrapyd_url, IGNORES, get_scrapyd, bytes2str, get_tree, log_url, is_in_curdir, clients_of_task, get_job_id, process_html, post_process
-from .models import Client, Deploy, Book, Project, Monitor, Task
-from settings  import PROJECTS_FOLDER,LOG_DIR,MODEL_DIR
+from .models import Client, Deploy, Project, Monitor, Task
+from settings import PROJECTS_FOLDER, LOG_DIR, MODEL_DIR, RESULT_DIR
 from .response import JsonResponse
 from nltk.tokenize import sent_tokenize
 from .model_output import new_word_tokenize, predict_in_doc, model
@@ -101,35 +101,6 @@ def base(request):
 def view_name(request):
 
     return render(request, 'polls/client_index.html')
-
-@require_http_methods(["GET"])
-def add_book(request):
-    response = {}
-    try:
-        book = Book(book_name=request.GET.get('book_name'))
-        book.save()
-        response['msg'] = 'success'
-        response['error_num'] = 0
-    except  Exception as e:
-        response['msg'] = str(e)
-        response['error_num'] = 1
-
-    return JsonResponse(response)
-
-@require_http_methods(["GET"])
-def show_books(request):
-    response = {}
-    try:
-        books = Book.objects.filter()
-        response['list']  = json.loads(serialize("json", books))
-        response['msg'] = 'success'
-        response['error_num'] = 0
-    except  Exception as e:
-        response['msg'] = str(e)
-        response['error_num'] = 1
-
-    return JsonResponse(response)
-
 
 @log_exception()
 @api_view(['GET'])
@@ -973,6 +944,40 @@ def logs_tree(request):
         # get tree data
         tree = get_tree(join(path))
         return JsonResponse(tree)
+
+@log_exception()
+@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
+def results_tree(request):
+    """
+    get file tree of project
+    :param request: request object
+    :param project_name: project name
+    :return: json of tree
+    """
+    if request.method == 'GET':
+        path = os.path.abspath(join(os.getcwd(), RESULT_DIR))
+        # get tree data
+        tree = get_tree(join(path))
+        return JsonResponse(tree)
+
+@log_exception()
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def results_file_read(request):
+    """
+    get content of project file
+    :param request: request object
+    :return: file content
+    """
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        path = join(data['path'], data['label'])
+
+        # binary file
+        with open(path, 'rb') as f:
+            return HttpResponse(f.read().decode('utf-8'))
+
 
 @log_exception()
 @api_view(['GET'])
