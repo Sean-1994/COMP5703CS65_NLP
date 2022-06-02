@@ -1123,6 +1123,61 @@ def neo4j_find(request):
 
 @log_exception()
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def neo4j_get_labels(request):
+    """
+    index statistics
+    :param request: request object
+    :return: json
+    """
+    if request.method == 'GET':
+        app = App(uri, user, password)
+        output = app.get_nodes()
+        result = {}
+        n = 0
+        counts = 0
+        data = []
+        for row in output:
+            n += 1
+            counts += int(row["Counts"])
+        result["Labels"] = str(n)
+        result["Overall"] = str(counts)
+        data.append(result)
+        return JsonResponse(data)
+
+
+@log_exception()
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def neo4j_chart_data(request):
+    """
+        index statistics
+        :param request: request object
+        :return: json
+        """
+    if request.method == 'GET':
+        app = App(uri, user, password)
+        output = app.get_nodes()
+        tem_data = {}
+        legend_data = []
+        chart_data = []
+        for row in output:
+            name = row["Label name"]
+            legend_data.append(name)
+
+        for row in output:
+            name = row["Label name"]
+            value = row["Counts"]
+            tem_data["name"] = name
+            tem_data["value"] = int(value)
+            chart_data.append(tem_data.copy())
+        result = {}
+        result['legend'] = legend_data
+        result['chart'] = chart_data
+        return JsonResponse(result)
+
+@log_exception()
+@api_view(['GET'])
 # @permission_classes([IsAuthenticated])
 def neo4j_graph(request):
     """
