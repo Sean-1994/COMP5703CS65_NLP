@@ -1,0 +1,23 @@
+ERROR - 2022-06-01 12:14:50,939 - process: 26660 - utils.py - polls.utils - 84 - utils - Single '}' encountered in format string
+Traceback (most recent call last):
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\polls\utils.py", line 82, in wrapper
+    result = func(*args, **kwargs)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\vr_envver\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\polls\views.py", line 1120, in neo4j_find
+    output = app.find_node(disease_name)
+  File "C:\Users\46121\PycharmProjects\COMP5703CS65_NLP\polls\neo4jQuery.py", line 57, in find_node
+    result_find = ("Relation: {l}}, {Node content: {n}".format(l=node[0], n=node[1]))
+ValueError: Single '}' encountered in format string
