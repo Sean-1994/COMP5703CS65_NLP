@@ -1120,8 +1120,9 @@ def neo4j_find(request):
         form = json.loads(request.body)
 
         disease_name = form['disease']
+        disease_name = disease_name.lower()
         app = App(uri, user, password)
-
+        
         output = app.find_node(disease_name)
 
         return JsonResponse(output)
