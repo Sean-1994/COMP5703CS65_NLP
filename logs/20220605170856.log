@@ -1,0 +1,203 @@
+ERROR - 2022-06-05 17:09:53,495 - process: 6360 - utils.py - polls.utils - 84 - utils - {code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input ')': expected an identifier (line 1, column 19 (offset: 18))
+"MATCH relation=(d:)--(node)WHERE d.name = $node_name RETURN relation"
+                   ^}
+Traceback (most recent call last):
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\utils.py", line 82, in wrapper
+    result = func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\views.py", line 1126, in neo4j_find
+    output = app.find_node(label_name,disease_name)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\neo4jQuery.py", line 62, in find_node
+    result = session.read_transaction(self._find_and_return_node, label, disease_name)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 396, in read_transaction
+    return self._run_transaction(READ_ACCESS, transaction_function, *args, **kwargs)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 325, in _run_transaction
+    result = transaction_function(tx, *args, **kwargs)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\neo4jQuery.py", line 84, in _find_and_return_node
+    result = tx.run(query, label=label, node_name=node_name)
+  File "E:\python\lib\site-packages\neo4j\work\transaction.py", line 137, in run
+    result._tx_ready_run(query, parameters, **kwparameters)
+  File "E:\python\lib\site-packages\neo4j\work\result.py", line 70, in _tx_ready_run
+    self._run(query, parameters, None, None, None, None, **kwparameters)
+  File "E:\python\lib\site-packages\neo4j\work\result.py", line 114, in _run
+    self._attach()
+  File "E:\python\lib\site-packages\neo4j\work\result.py", line 203, in _attach
+    self._connection.fetch_message()
+  File "E:\python\lib\site-packages\neo4j\io\_common.py", line 186, in inner
+    func(*args, **kwargs)
+  File "E:\python\lib\site-packages\neo4j\io\_bolt4.py", line 309, in fetch_message
+    response.on_failure(summary_metadata or {})
+  File "E:\python\lib\site-packages\neo4j\io\_common.py", line 244, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.CypherSyntaxError: {code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input ')': expected an identifier (line 1, column 19 (offset: 18))
+"MATCH relation=(d:)--(node)WHERE d.name = $node_name RETURN relation"
+                   ^}
+ERROR - 2022-06-05 17:11:17,946 - process: 6360 - utils.py - polls.utils - 84 - utils - HTTPConnectionPool(host='127.0.0.1', port=6800): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002282DC86560>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\urllib3\connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "E:\python\lib\site-packages\urllib3\util\connection.py", line 95, in create_connection
+    raise err
+  File "E:\python\lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "E:\python\lib\site-packages\urllib3\connectionpool.py", line 398, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "E:\python\lib\site-packages\urllib3\connection.py", line 239, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "E:\python\lib\http\client.py", line 1282, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "E:\python\lib\http\client.py", line 1328, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "E:\python\lib\http\client.py", line 1277, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "E:\python\lib\http\client.py", line 1037, in _send_output
+    self.send(msg)
+  File "E:\python\lib\http\client.py", line 975, in send
+    self.connect()
+  File "E:\python\lib\site-packages\urllib3\connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "E:\python\lib\site-packages\urllib3\connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002282DC86560>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\requests\adapters.py", line 440, in send
+    resp = conn.urlopen(
+  File "E:\python\lib\site-packages\urllib3\connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "E:\python\lib\site-packages\urllib3\util\retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=6800): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002282DC86560>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\utils.py", line 82, in wrapper
+    result = func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\views.py", line 142, in client_status
+    requests.get(scrapyd_url(client.ip, client.port), timeout=3)
+  File "E:\python\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "E:\python\lib\site-packages\requests\api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "E:\python\lib\site-packages\requests\sessions.py", line 529, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\python\lib\site-packages\requests\sessions.py", line 645, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\python\lib\site-packages\requests\adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=6800): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002282DC86560>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))
+ERROR - 2022-06-05 17:31:55,280 - process: 6360 - utils.py - polls.utils - 84 - utils - Unable to retrieve routing information
+Traceback (most recent call last):
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\utils.py", line 82, in wrapper
+    result = func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\views.py", line 1157, in neo4j_chart_data
+    output = app.get_nodes()
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\neo4jQuery.py", line 163, in get_nodes
+    result = session.read_transaction(self._get_nodes)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 396, in read_transaction
+    return self._run_transaction(READ_ACCESS, transaction_function, *args, **kwargs)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 352, in _run_transaction
+    raise errors[-1]
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 322, in _run_transaction
+    self._open_transaction(access_mode=access_mode, metadata=metadata, timeout=timeout)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 255, in _open_transaction
+    self._connect(access_mode=access_mode)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 108, in _connect
+    super()._connect(access_mode)
+  File "E:\python\lib\site-packages\neo4j\work\__init__.py", line 79, in _connect
+    self._connection = self._pool.acquire(
+  File "E:\python\lib\site-packages\neo4j\io\__init__.py", line 1186, in acquire
+    self.ensure_routing_table_is_fresh(
+  File "E:\python\lib\site-packages\neo4j\io\__init__.py", line 1132, in ensure_routing_table_is_fresh
+    self.update_routing_table(
+  File "E:\python\lib\site-packages\neo4j\io\__init__.py", line 1103, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
+ERROR - 2022-06-05 17:32:02,362 - process: 6360 - utils.py - polls.utils - 84 - utils - Unable to retrieve routing information
+Traceback (most recent call last):
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\utils.py", line 82, in wrapper
+    result = func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\views.py", line 1141, in neo4j_get_labels
+    output = app.find_distinct_node_rel_node()
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\neo4jQuery.py", line 150, in find_distinct_node_rel_node
+    result = session.read_transaction(self._find_distinct_node_rel_node)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 396, in read_transaction
+    return self._run_transaction(READ_ACCESS, transaction_function, *args, **kwargs)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 352, in _run_transaction
+    raise errors[-1]
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 322, in _run_transaction
+    self._open_transaction(access_mode=access_mode, metadata=metadata, timeout=timeout)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 255, in _open_transaction
+    self._connect(access_mode=access_mode)
+  File "E:\python\lib\site-packages\neo4j\work\simple.py", line 108, in _connect
+    super()._connect(access_mode)
+  File "E:\python\lib\site-packages\neo4j\work\__init__.py", line 73, in _connect
+    self._pool.update_routing_table(
+  File "E:\python\lib\site-packages\neo4j\io\__init__.py", line 1103, in update_routing_table
+    raise ServiceUnavailable("Unable to retrieve routing information")
+neo4j.exceptions.ServiceUnavailable: Unable to retrieve routing information
