@@ -85,11 +85,17 @@ WSGI_APPLICATION = 'cs65_4_1.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+DB_SUBDIR = 'dbs'
+DB_DIR = os.path.join(os.getcwd(), DB_SUBDIR)
 
+# Create DB dir if it does not exist
+os.path.exists(DB_DIR) or os.makedirs(DB_DIR)
+
+DB_PATH = os.path.join(DB_DIR, 'db.sqlite3')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'dbs/db.sqlite3'),
     }
 }
 
