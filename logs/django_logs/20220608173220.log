@@ -1,0 +1,28 @@
+INFO - 2022-06-08 17:32:59,251 - process: 16028 - scheduler.py - polls.scheduler - 105 - scheduler - successfully synced task with jobs with force
+ERROR - 2022-06-08 17:40:41,462 - process: 16028 - utils.py - polls.utils - 533 - utils - [Errno 13] Permission denied: 'models/'
+Traceback (most recent call last):
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\utils.py", line 531, in wrapper
+    result = func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\python\lib\site-packages\django\views\generic\base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "E:\python\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "E:\python\lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "E:\5703\git_nlp_repository\COMP5703CS65_NLP\polls\views.py", line 1037, in nlp_run
+    model.load_state_dict(torch.load(f'models/{models}', map_location=torch.device('cpu')))
+  File "E:\python\lib\site-packages\torch\serialization.py", line 699, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "E:\python\lib\site-packages\torch\serialization.py", line 231, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "E:\python\lib\site-packages\torch\serialization.py", line 212, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+PermissionError: [Errno 13] Permission denied: 'models/'
