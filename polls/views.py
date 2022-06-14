@@ -1054,7 +1054,26 @@ def neo4j_delete(request):
 
         return JsonResponse(output)
 
+@log_exception()
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def neo4j_available_node(request):
+    """
+    get param of model
+    :param request: request object
+    :return: output of find node
+    """
+    if request.method == 'POST':
+        form = json.loads(request.body)
 
+        label_name = form['id']
+        app = App(uri, user, password)
+
+        output = app.find_available_node(label_name)
+
+        return JsonResponse(output)
+    
+    
 @log_exception()
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -1075,7 +1094,40 @@ def neo4j_find(request):
 
         return JsonResponse(output)
 
+@log_exception()
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def neo4j_single_find(request):
+    """
+    find a node
+    :param request: request object
+    :param id: node_id
+    :return: json
+    """
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        form = body['id']
+        relation = form["Relation"]
+        if relation in ["HAS_SYMPTON", "HAS_SYMPTOM", "HAS_POSITION", "HAS_COMPLICATION"]:
+            relation = "Disease"
+        elif relation == "DIAGNOSE":
+            relation = "Diagnosis"
+        elif relation == "TREAT":
+            relation = "Treatment"
+        elif relation == "PREVENT":
+            relation = "Prevention"
+        elif relation == "CAUSE":
+            relation = "Cause"
+        name = form["Node content"]
+        app = App(uri, user, password)
 
+        output = {}
+
+        output["output"] = app.find_node(relation, name)
+        output["name"] = name
+
+        return JsonResponse(output)
+    
 @log_exception()
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -1125,7 +1177,7 @@ def neo4j_chart_data(request):
 
 @log_exception()
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def neo4j_graph(request):
     """
     render index page
